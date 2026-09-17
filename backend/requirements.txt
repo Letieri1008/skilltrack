@@ -1,0 +1,33 @@
+# Django
+Django
+djangorestframework
+
+# PostgreSQL
+psycopg[binary]
+
+# Autenticação JWT
+djangorestframework-simplejwt
+
+# Comunicação com o React
+django-cors-headers
+
+# Filtros da API
+django-filter
+
+# Documentação Swagger/OpenAPI
+drf-spectacular
+
+# Variáveis de ambiente
+django-environ
+
+# Upload e processamento de imagens
+Pillow
+
+# Servidor para produção
+gunicorn
+whitenoise
+
+# Testes
+pytest
+pytest-django
+factory-boy
