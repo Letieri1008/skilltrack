@@ -16,10 +16,10 @@ import { pageEnterAnimation } from "../../animation/pageAnimations";
 export default function Brands() {
   const navigate = useNavigate();
   const [brands, setBrands] = useState([]);
-  useEffect(() => setBrands(getBrands()), []);
-  function handleDelete(id) {
-    removeBrand(id);
-    setBrands(getBrands());
+  useEffect(() => { getBrands().then(setBrands).catch(console.error); }, []);
+  async function handleDelete(id) {
+    await removeBrand(id);
+    setBrands(await getBrands());
   }
   return (
     <Box component="section" sx={pageEnterAnimation}>

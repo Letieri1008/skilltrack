@@ -23,12 +23,11 @@ export default function Inventory() {
   const [equipment, setEquipment] = useState([]);
   const [successOpen, setSuccessOpen] = useState(false);
 
-  useEffect(() => setEquipment(getEquipment()), []);
+  useEffect(() => { getEquipment().then(setEquipment).catch(console.error); }, []);
 
   function handleStatusChange(item, status) {
     const updatedItem = { ...item, status };
-    saveEquipment(updatedItem);
-    setEquipment(getEquipment());
+    saveEquipment(updatedItem).then(() => getEquipment()).then(setEquipment);
     setSuccessOpen(true);
   }
 

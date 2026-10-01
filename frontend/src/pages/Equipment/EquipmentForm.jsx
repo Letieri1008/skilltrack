@@ -42,7 +42,7 @@ export default function EquipmentForm() {
 
   useEffect(() => {
     if (id) {
-      setForm(findEquipment(id) || emptyEquipment);
+      findEquipment(id).then((equipment) => setForm(equipment || emptyEquipment));
     }
   }, [id]);
 

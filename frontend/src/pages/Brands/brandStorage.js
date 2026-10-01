@@ -1,18 +1,4 @@
-const storageKey = "skilltrack.brands";
-
-export function getBrands() {
-  return JSON.parse(localStorage.getItem(storageKey) || "[]");
-}
-
-export function saveBrand(brand) {
-  const brands = getBrands();
-  const next = brand.id
-    ? brands.map((item) => (item.id === brand.id ? brand : item))
-    : [...brands, { ...brand, id: crypto.randomUUID() }];
-  localStorage.setItem(storageKey, JSON.stringify(next));
-}
-
-export function removeBrand(id) {
-  localStorage.setItem(storageKey, JSON.stringify(getBrands().filter((item) => item.id !== id)));
-}
-
+import { apiDelete, apiGet, apiPost } from "../../services/api";
+export async function getBrands() { const data = await apiGet("/brands/"); return data.results || data; }
+export function saveBrand(brand) { return apiPost("/brands/", brand); }
+export function removeBrand(id) { return apiDelete(`/brands/${id}/`); }

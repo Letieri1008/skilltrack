@@ -20,8 +20,8 @@ import { pageEnterAnimation } from "../../animation/pageAnimations";
 export default function Equipment() {
   const navigate = useNavigate();
   const [equipment, setEquipment] = useState([]);
-  useEffect(() => setEquipment(getEquipment()), []);
-  const remove = (id) => { removeEquipment(id); setEquipment(getEquipment()); };
+  useEffect(() => { getEquipment().then(setEquipment).catch(console.error); }, []);
+  const remove = async (id) => { await removeEquipment(id); setEquipment(await getEquipment()); };
   return (
     <Box component="section" sx={pageEnterAnimation}>
       <Stack spacing={1} sx={{ mb: 4 }}>

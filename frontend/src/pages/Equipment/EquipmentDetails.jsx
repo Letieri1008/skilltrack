@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import Box from "@mui/material/Box";
@@ -11,7 +12,8 @@ import { findEquipment } from "./equipmentStorage";
 export default function EquipmentDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const equipment = findEquipment(id);
+  const [equipment, setEquipment] = useState(null);
+  useEffect(() => { findEquipment(id).then(setEquipment).catch(() => setEquipment(false)); }, [id]);
 
   if (!equipment) {
     return <Typography>Equipment not found.</Typography>;
